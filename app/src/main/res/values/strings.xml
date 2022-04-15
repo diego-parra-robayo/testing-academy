@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Testing Academy</string>
+
+    <!-- movie details labels -->
+    <string name="label_info_not_available">Info not available</string>
+    <string name="label_overview">Overview</string>
+    <string name="label_release_date">Release date</string>
+    <string name="label_homepage">Homepage</string>
+    <string name="vote_average_text">(%d%%)</string>
+
+    <!-- errors -->
+    <string name="default_error_message">An error has occurred: %s</string>
+
 </resources>
