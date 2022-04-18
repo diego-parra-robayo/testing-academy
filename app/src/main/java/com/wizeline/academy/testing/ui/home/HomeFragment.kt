@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.snackbar.Snackbar
 import com.wizeline.academy.testing.R
 import com.wizeline.academy.testing.databinding.FragmentHomeBinding
 import com.wizeline.academy.testing.domain.Movie
@@ -45,6 +47,11 @@ class HomeFragment : Fragment() {
 
     private fun initToolbar() {
         NavigationUI.setupWithNavController(binding.appbar, findNavController())
+        binding.appbar.menu.findItem(R.id.menu_filter)
+            .setOnMenuItemClickListener {
+                FilterDialog().show(childFragmentManager, "FilterDialog")
+                true
+            }
     }
 
     private fun initRecyclerView() = with(binding.moviesList) {
@@ -74,6 +81,10 @@ class HomeFragment : Fragment() {
 
     private fun renderMovies(movies: List<Movie>) {
         moviesAdapter.submitList(movies)
+        with(binding.errorMessage) {
+            isVisible = movies.isEmpty()
+            text = getString(R.string.no_movies)
+        }
     }
 
     private fun renderFailure(error: Throwable) {

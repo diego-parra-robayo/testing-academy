@@ -22,6 +22,16 @@ object MappersImpl : Mappers {
         )
     }
 
+    override fun toMovie(dto: MovieDetailsDto): Movie = with(dto) {
+        Movie(
+            id = id.toString(),
+            title = title ?: "",
+            imageUrl = getImageUrlOrNull(posterPath) ?: "",
+            releaseDate = releaseDate ?: "",
+            voteAverage = voteAverage?.times(10)?.toInt() ?: 0
+        )
+    }
+
     override fun toMovieDetails(dto: MovieDetailsDto): MovieDetails = with(dto) {
         MovieDetails(
             id = id.toString(),

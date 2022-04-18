@@ -9,6 +9,18 @@
     <string name="vote_average_text">(%d%%)</string>
     <string name="label_favorite">Favorite</string>
 
+    <!-- filter feature -->
+    <string name="menu_filter">Filter</string>
+    <string name="dialog_filter">Filter movies by</string>
+    <string name="label_filter_option_all">All</string>
+    <string name="label_filter_option_favorites">Favorites</string>
+    <array name="filter_options">
+        <item>All</item>
+        <item>Favorites</item>
+    </array>
+    <string name="no_movies">No movies to show</string>
+
+
     <!-- errors -->
     <string name="default_error_message">An error has occurred: %s</string>
 
