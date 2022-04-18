@@ -9,8 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.wizeline.academy.testing.domain.MovieDetails
 import com.wizeline.academy.testing.domain.MoviesRepository
 import com.wizeline.academy.testing.utils.Resource
-import com.wizeline.academy.testing.utils.toResource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,9 +27,13 @@ class DetailsViewModel @Inject constructor(
     val movieDetails: LiveData<Resource<MovieDetails>> = _movieDetails
 
     init {
-        viewModelScope.launch {
-            _movieDetails.value = moviesRepository.getMovieDetails(movieId).toResource()
-        }
+        moviesRepository.getMovieDetails(movieId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                _movieDetails.value = Resource.Success(it)
+            }, {
+                _movieDetails.value = Resource.Failure(it)
+            })
     }
 
     val isFavorite = moviesRepository

@@ -52,10 +52,16 @@ dependencies {
 
     //      ----------      DATA
 
+    //  RxJava
+    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:$kotlinCoroutinesRxVersion"
+
     //  Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingInterceptorVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
 
     //  Room
     implementation "androidx.room:room-runtime:$roomVersion"

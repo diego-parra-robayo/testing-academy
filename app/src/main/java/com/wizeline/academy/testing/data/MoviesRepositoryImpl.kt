@@ -3,12 +3,16 @@ package com.wizeline.academy.testing.data
 import com.wizeline.academy.testing.data.local.FavoritesDao
 import com.wizeline.academy.testing.data.network.MoviesApi
 import com.wizeline.academy.testing.di.IoDispatcher
+import com.wizeline.academy.testing.di.IoScheduler
 import com.wizeline.academy.testing.domain.Movie
 import com.wizeline.academy.testing.domain.MovieDetails
 import com.wizeline.academy.testing.domain.MoviesRepository
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -16,7 +20,8 @@ class MoviesRepositoryImpl @Inject constructor(
     private val moviesApi: MoviesApi,
     private val favoritesDao: FavoritesDao,
     private val mappers: Mappers,
-    @IoDispatcher private val dispatcher: CoroutineDispatcher
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
+    @IoScheduler private val scheduler: Scheduler
 ) : MoviesRepository {
 
     override suspend fun getMovies(): Result<List<Movie>> = withContext(dispatcher) {
@@ -28,18 +33,16 @@ class MoviesRepositoryImpl @Inject constructor(
 
     override suspend fun getMovie(id: String): Result<Movie> = withContext(dispatcher) {
         runCatching {
-            moviesApi.getMovie(movieId = id)
+            moviesApi.getMovie(id)
+                .await()
                 .let { mappers.toMovie(it) }
         }
     }
 
-    override suspend fun getMovieDetails(id: String): Result<MovieDetails> =
-        withContext(dispatcher) {
-            runCatching {
-                moviesApi.getMovie(id)
-                    .let { mappers.toMovieDetails(it) }
-            }
-        }
+    override fun getMovieDetails(id: String): Single<MovieDetails> =
+        moviesApi.getMovie(id)
+            .map { mappers.toMovieDetails(it) }
+            .subscribeOn(scheduler)
 
     override suspend fun getFavorites(): Result<List<String>> = withContext(dispatcher) {
         runCatching {

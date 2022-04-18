@@ -1,12 +1,13 @@
 package com.wizeline.academy.testing.domain
 
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
 
     suspend fun getMovies(): Result<List<Movie>>
     suspend fun getMovie(id: String): Result<Movie>
-    suspend fun getMovieDetails(id: String): Result<MovieDetails>
+    fun getMovieDetails(id: String): Single<MovieDetails>
 
     suspend fun getFavorites(): Result<List<String>>
     fun getFavoritesAsFlow(): Flow<List<String>>
