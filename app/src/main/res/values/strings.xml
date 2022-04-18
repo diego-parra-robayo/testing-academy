@@ -7,6 +7,7 @@
     <string name="label_release_date">Release date</string>
     <string name="label_homepage">Homepage</string>
     <string name="vote_average_text">(%d%%)</string>
+    <string name="label_favorite">Favorite</string>
 
     <!-- errors -->
     <string name="default_error_message">An error has occurred: %s</string>

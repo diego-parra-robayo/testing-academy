@@ -55,6 +55,9 @@ class DetailsFragment : Fragment() {
             binding.toolbar,
             findNavController()
         )
+        binding.btnFavorite.setOnClickListener {
+            viewModel.toggleFavorite()
+        }
     }
 
     private fun subscribeUi() {
@@ -70,6 +73,9 @@ class DetailsFragment : Fragment() {
                 is Resource.Success -> renderMovieDetails(it.data)
                 is Resource.Failure -> renderFailure(it.error)
             }
+        }
+        viewModel.isFavorite.observe(viewLifecycleOwner) {
+            binding.btnFavorite.isSelected = it
         }
     }
 
