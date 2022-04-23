@@ -6,7 +6,7 @@ import com.wizeline.academy.testing.data.network.dtos.MovieListResponse
 import com.wizeline.academy.testing.test_utils.data.AndroidTestData
 import io.reactivex.rxjava3.core.Single
 
-object FakeMoviesApi : MoviesApi {
+class FakeMoviesApi : MoviesApi {
 
     var error: Throwable? = null
 
