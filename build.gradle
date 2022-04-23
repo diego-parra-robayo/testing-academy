@@ -23,6 +23,7 @@ buildscript {
         glideVersion = '4.12.0'
 
         navVersion = '2.4.2'
+        fragmentVersion = '1.4.1'
 
         junitVersion = '4.13.2'
         truthVersion = '1.1.3'

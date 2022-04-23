@@ -106,4 +106,6 @@ dependencies {
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navVersion"
 }
