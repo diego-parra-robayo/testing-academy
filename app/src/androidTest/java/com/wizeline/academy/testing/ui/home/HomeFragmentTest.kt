@@ -36,6 +36,9 @@ class HomeFragmentTest {
     @Inject
     lateinit var database: TestingDatabase
 
+    @Inject
+    lateinit var moviesApi: MoviesApi
+
     @Before
     fun init() {
         hiltRule.inject()
@@ -53,6 +56,14 @@ class HomeFragmentTest {
             .title(R.string.app_name)
     }
 
+    @Test
+    fun testError() {
+        val errorMessage = "Default error"
+        HomeRobot()
+            .setError(moviesApi as FakeMoviesApi, Exception(errorMessage))
+            .launch()
+            .checkError(R.string.default_error_message, errorMessage)
+    }
 
 
     @Module

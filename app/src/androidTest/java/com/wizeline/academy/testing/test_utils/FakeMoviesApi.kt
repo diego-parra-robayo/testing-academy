@@ -8,11 +8,15 @@ import io.reactivex.rxjava3.core.Single
 
 object FakeMoviesApi : MoviesApi {
 
+    var error: Throwable? = null
+
     override suspend fun getPopularMovies(): MovieListResponse {
+        error?.let { throw it }
         return AndroidTestData.moviesListTotal3
     }
 
     override fun getMovie(movieId: String): Single<MovieDetailsDto> {
+        error?.let { throw it }
         val movie1 = AndroidTestData.moviesList1st414906
         val movie2 = AndroidTestData.moviesList2nd634649
         val movie3 = AndroidTestData.moviesList3rd799876
