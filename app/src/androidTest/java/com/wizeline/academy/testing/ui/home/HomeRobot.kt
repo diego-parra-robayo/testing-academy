@@ -6,7 +6,7 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import com.wizeline.academy.testing.R
 import com.wizeline.academy.testing.test_utils.ScreenRobot
-import com.wizeline.academy.testing.test_utils.launchFragmentInHiltContainer
+import com.wizeline.academy.testing.test_utils.di.launchFragmentInHiltContainer
 
 class HomeRobot : ScreenRobot<HomeRobot>() {
 

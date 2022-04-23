@@ -1,4 +1,4 @@
-package com.wizeline.academy.testing.test_utils
+package com.wizeline.academy.testing.test_utils.di
 
 import android.app.Application
 import android.content.Context

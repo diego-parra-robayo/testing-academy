@@ -5,7 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import com.wizeline.academy.testing.data.MappersImpl
 import com.wizeline.academy.testing.domain.MoviesRepository
 import com.wizeline.academy.testing.test_utils.MainCoroutineRule
-import com.wizeline.academy.testing.test_utils.TestData
+import com.wizeline.academy.testing.test_utils.data.LocalTestData
 import com.wizeline.academy.testing.test_utils.getOrAwaitValue
 import com.wizeline.academy.testing.utils.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -61,7 +61,7 @@ class HomeViewModelTest {
 
     @Test
     fun moviesGetAll() = runTest {
-        val movies = listOf(TestData.movieDto634649).map { mappers.toMovie(it) }
+        val movies = listOf(LocalTestData.movie634649).map { mappers.toMovie(it) }
         whenever(moviesRepository.getMovies()).thenReturn(Result.success(movies))
 
         viewModel.selectFilter(FilterOption.ALL)
@@ -72,7 +72,7 @@ class HomeViewModelTest {
 
     @Test
     fun moviesGetFavorites() = runTest {
-        val movie = mappers.toMovie(TestData.movieDetailsDto675353)
+        val movie = mappers.toMovie(LocalTestData.movieDetails675353)
         whenever(moviesRepository.getFavorites()).thenReturn(Result.success(listOf(movie.id)))
         whenever(moviesRepository.getMovie(movie.id)).thenReturn(Result.success(movie))
 
@@ -84,7 +84,7 @@ class HomeViewModelTest {
 
     @Test
     fun onMovieClickThenSetNewNavigationEvent() {
-        val movieId = mappers.toMovie(TestData.movieDetailsDto675353).id
+        val movieId = mappers.toMovie(LocalTestData.movieDetails675353).id
         viewModel.onMovieClick(movieId)
 
         val value = viewModel.navigateDetails.getOrAwaitValue()

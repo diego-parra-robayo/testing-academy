@@ -1,4 +1,4 @@
-package com.wizeline.academy.testing.test_utils
+package com.wizeline.academy.testing.test_utils.di
 
 import com.wizeline.academy.testing.di.DispatchersModule
 import com.wizeline.academy.testing.di.IoDispatcher
@@ -17,6 +17,7 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 //  This is not actually necessary but it is just to demonstrate how to replace a hilt module
 //  for testing purpose
 
+/*
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
@@ -33,3 +34,4 @@ object FakeDispatchersModule {
     @IoScheduler
     fun providesIoScheduler(): Scheduler = Schedulers.trampoline()
 }
+*/

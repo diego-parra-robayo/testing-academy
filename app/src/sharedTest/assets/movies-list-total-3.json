@@ -1,0 +1,67 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/5P8SmMzSNYikXpxil6BYzJ16611.jpg",
+      "genre_ids": [
+        80,
+        9648,
+        53
+      ],
+      "id": 414906,
+      "original_language": "en",
+      "original_title": "The Batman",
+      "overview": "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
+      "popularity": 17796.835,
+      "poster_path": "/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+      "release_date": "2022-03-01",
+      "title": "The Batman",
+      "video": false,
+      "vote_average": 7.9,
+      "vote_count": 3500
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 634649,
+      "original_language": "en",
+      "original_title": "Spider-Man: No Way Home",
+      "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+      "popularity": 5226.27,
+      "poster_path": "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      "release_date": "2021-12-15",
+      "title": "Spider-Man: No Way Home",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 11908
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2n95p9isIi1LYTscTcGytlI4zYd.jpg",
+      "genre_ids": [
+        18,
+        53,
+        80
+      ],
+      "id": 799876,
+      "original_language": "en",
+      "original_title": "The Outfit",
+      "overview": "Leonard is an English tailor who used to craft suits on London’s world-famous Savile Row. After a personal tragedy, he’s ended up in Chicago, operating a small tailor shop in a rough part of town where he makes beautiful clothes for the only people around who can afford them: a family of vicious gangsters.",
+      "popularity": 4186.444,
+      "poster_path": "/lZa5EB6PVJBT5mxhgZS5ftqdAm6.jpg",
+      "release_date": "2022-02-25",
+      "title": "The Outfit",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 99
+    }
+  ],
+  "total_pages": 33266,
+  "total_results": 665302
+}

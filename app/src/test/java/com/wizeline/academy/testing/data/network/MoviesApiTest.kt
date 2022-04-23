@@ -1,9 +1,9 @@
 package com.wizeline.academy.testing.data.network
 
 import com.google.common.truth.Truth.assertThat
-import com.wizeline.academy.testing.test_utils.ResFilenames
-import com.wizeline.academy.testing.test_utils.TestData
+import com.wizeline.academy.testing.test_utils.TestData.ResFilenames
 import com.wizeline.academy.testing.test_utils.assertThrows
+import com.wizeline.academy.testing.test_utils.data.LocalTestData
 import com.wizeline.academy.testing.test_utils.enqueueResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -61,7 +61,7 @@ class MoviesApiTest {
     @Test
     fun getPopularMoviesShouldFetchMoviesCorrectlyGiven200Response() = runTest {
         mockWebServer.enqueueResponse(ResFilenames.POPULAR_MOVIES_200, 200)
-        val expectedFirst = TestData.movieDto634649
+        val expectedFirst = LocalTestData.movie634649
 
         val result = api.getPopularMovies()
 
@@ -70,14 +70,14 @@ class MoviesApiTest {
 
     @Test
     fun getPopularMoviesShouldReturnResultFailureGiven401Response() = runTest {
-        mockWebServer.enqueueResponse(ResFilenames.RESPONSE_ERROR_401, 401)
+        mockWebServer.enqueueResponse(ResFilenames.ERROR_RESPONSE_401, 401)
         assertThrows<HttpException> { api.getPopularMovies() }
     }
 
     @Test
     fun getMovieCorrectRequestWhenFetchingMovie() {
         mockWebServer.enqueueResponse(ResFilenames.MOVIE_DETAILS_675353_200, 200)
-        val movieId = TestData.movieDetailsDto675353.id.toString()
+        val movieId = LocalTestData.movieDetails675353.id.toString()
         val expectedRequestPath = "/movie/$movieId"
 
         api.getMovie(movieId).blockingGet()
@@ -89,7 +89,7 @@ class MoviesApiTest {
     @Test
     fun getMovieShouldFetchMovieCorrectlyGiven200Response() {
         mockWebServer.enqueueResponse(ResFilenames.MOVIE_DETAILS_675353_200, 200)
-        val expected = TestData.movieDetailsDto675353
+        val expected = LocalTestData.movieDetails675353
 
         val result = api.getMovie(movieId = expected.id.toString())
 
@@ -98,7 +98,7 @@ class MoviesApiTest {
 
     @Test
     fun getMovieShouldReturnResultFailureGiven401Response() {
-        mockWebServer.enqueueResponse(ResFilenames.RESPONSE_ERROR_401, 401)
+        mockWebServer.enqueueResponse(ResFilenames.ERROR_RESPONSE_401, 401)
         val result = api.getMovie("movieId")
         assertThrows<HttpException> { result.blockingGet() }
     }

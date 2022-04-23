@@ -4,7 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import com.wizeline.academy.testing.data.local.FavoritesDao
 import com.wizeline.academy.testing.data.network.MoviesApi
 import com.wizeline.academy.testing.data.network.dtos.MovieListResponse
-import com.wizeline.academy.testing.test_utils.TestData
+import com.wizeline.academy.testing.test_utils.data.LocalTestData
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -47,7 +47,7 @@ class MoviesRepositoryImplTest {
 
     @Test
     fun getMovies() = runTest {
-        val popularMovies = listOf(TestData.movieDto634649)
+        val popularMovies = listOf(LocalTestData.movie634649)
         val expected = popularMovies.map { mappers.toMovie(it) }
 
         whenever(moviesApi.getPopularMovies())
@@ -66,7 +66,7 @@ class MoviesRepositoryImplTest {
 
     @Test
     fun getMovie() = runTest {
-        val movie = TestData.movieDetailsDto675353
+        val movie = LocalTestData.movieDetails675353
         val movieId = movie.id.toString()
         val expected = mappers.toMovie(movie)
         whenever(moviesApi.getMovie(movieId = movieId)).thenReturn(Single.just(movie))
@@ -77,7 +77,7 @@ class MoviesRepositoryImplTest {
 
     @Test
     fun getMovieDetails() {
-        val movie = TestData.movieDetailsDto675353
+        val movie = LocalTestData.movieDetails675353
         val movieId = movie.id.toString()
         val expected = mappers.toMovieDetails(movie)
         whenever(moviesApi.getMovie(movieId)).thenReturn(Single.just(movie))

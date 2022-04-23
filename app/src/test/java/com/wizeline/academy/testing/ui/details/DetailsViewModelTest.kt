@@ -7,14 +7,11 @@ import com.wizeline.academy.testing.data.MappersImpl
 import com.wizeline.academy.testing.domain.MoviesRepository
 import com.wizeline.academy.testing.test_utils.MainCoroutineRule
 import com.wizeline.academy.testing.test_utils.SchedulersRule
-import com.wizeline.academy.testing.test_utils.TestData
+import com.wizeline.academy.testing.test_utils.data.LocalTestData
 import com.wizeline.academy.testing.test_utils.getOrAwaitValue
 import com.wizeline.academy.testing.utils.Resource
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -44,7 +41,7 @@ class DetailsViewModelTest {
     private lateinit var viewModel: DetailsViewModel
 
     private val mapper = MappersImpl
-    private val movie = mapper.toMovieDetails(TestData.movieDetailsDto675353)
+    private val movie = mapper.toMovieDetails(LocalTestData.movieDetails675353)
 
     @Before
     fun setUp() {
