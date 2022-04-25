@@ -38,19 +38,17 @@ class HomeFragmentTest : BaseHiltTest() {
 
     @Test
     fun checkFirstMovieInList() {
-        val firstMovie = MappersImpl.toMovie(AndroidTestData.moviesList1st414906)
         HomeRobot()
             .launch()
-            .checkMovie(0, firstMovie.imageUrl)
+            .checkMovie(itemPosition, movie.imageUrl)
     }
 
     @Test
     fun selectListItemNavigatesDetailView() {
         HomeRobot()
             .launch()
-            .clickMovie(0)
+            .clickMovie(itemPosition)
             .navigatesTo(R.id.detailsFragment)
     }
-
 
 }

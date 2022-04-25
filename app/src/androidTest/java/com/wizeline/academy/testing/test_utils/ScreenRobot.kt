@@ -4,8 +4,10 @@ import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.wizeline.academy.testing.test_utils.matchers.CustomMatchers
+import org.hamcrest.CoreMatchers.not
 
 abstract class ScreenRobot<out T> {
 
@@ -21,8 +23,24 @@ abstract class ScreenRobot<out T> {
         return this as T
     }
 
+    fun checkToolbarHasTitle(@IdRes toolbarId: Int, str: String): T {
+        onView(withId(toolbarId)).check(matches(hasDescendant(withText(str))))
+        return this as T
+    }
+
     fun checkViewHasText(@IdRes viewId: Int, @StringRes stringId: Int, vararg params: Any): T {
         onView(withId(viewId)).check(matches(CustomMatchers.withText(stringId, *params)))
+        return this as T
+    }
+
+    fun checkViewHasText(@IdRes viewId: Int, text: String): T {
+        onView(withId(viewId)).check(matches(withText(text)))
+        return this as T
+    }
+
+    fun checkViewIsSelected(@IdRes viewId: Int, isSelected: Boolean): T {
+        val matcher = if (isSelected) isSelected() else not(isSelected())
+        onView(withId(viewId)).check(matches(matcher))
         return this as T
     }
 
